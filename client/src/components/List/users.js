@@ -10,6 +10,7 @@ import UpdateUser from '../update/user';
 import Delete from '../delete/user';
 import Search from '../search';
 import Create from '../create/user';
+import BaseURL from '../url.config'
 
 function Users(props) {
   const [data,setData] = useState([]);
@@ -21,7 +22,7 @@ function Users(props) {
   const [isLoading,setLoading] = useState(false);
   const fetchUsers = async () => {
     setLoading(true);
-    await axios.get('http://localhost:5000/user')
+    await axios.get(`${BaseURL}/user`)
     .then(res => {
       setData(res.data);
       setLoading(false);

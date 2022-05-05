@@ -3,6 +3,7 @@ import axios from 'axios'
 import Loading from '../Loading/loading'
 import {Card,CardHeader,CardContent,Typography,Avatar,Tooltip,Dialog,DialogTitle,DialogContent,TextField} from '@mui/material'
 import { Check, Close } from '@mui/icons-material';
+import BaseURL from '../url.config'
 
 function stringToColor(string) {
   let hash = 0;
@@ -44,7 +45,7 @@ function Histories(props) {
     }
     const fetchHistories = async () => {
         setLoading(true);
-        const res = await axios.get('http://localhost:5000/history');
+        const res = await axios.get(`${BaseURL}/history`);
         setData(res.data);
         setLoading(false);
     }

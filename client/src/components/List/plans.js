@@ -8,6 +8,7 @@ import {useNavigate} from 'react-router-dom';
 import UpdatePlan from '../update/plan';
 import Search from '../search';
 import Create from '../create/plan';
+import BaseURL from '../url.config'
 import './plans.css';
 
 function Plans(props) {
@@ -20,7 +21,7 @@ function Plans(props) {
   const navigate = useNavigate();
   const handleAction = async(action,plan) => {
     if(action === 'delete'){
-      await axios.delete(`http://localhost:5000/plan/${plan.id}`).then(res=>{
+      await axios.delete(`${BaseURL}/plan/${plan.id}`).then(res=>{
         window.localStorage.setItem('success',res.data.success);
         navigate(0);
       })
@@ -32,7 +33,7 @@ function Plans(props) {
   }
   const fetchPlans = async () => {
     setLoading(true);
-    await axios.get('http://localhost:5000/plan')
+    await axios.get(`${BaseURL}/plan`)
     .then(res => {
       setData(res.data);
       setLoading(false);

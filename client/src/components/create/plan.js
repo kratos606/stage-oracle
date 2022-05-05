@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react'
 import {Alert,TextField,Button,Dialog,DialogTitle,DialogActions,DialogContent,Snackbar} from '@mui/material'
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import BaseURL from '../url.config'
 
 function Plan(props) {
   const [selected,setSelected]=useState({})
@@ -16,7 +17,7 @@ function Plan(props) {
         setOpen(true);
     }
     const handleSubmit = async() => {
-        await axios.post('http://localhost:5000/plan',{code_rlp:selected.code_RLP,ordre_jour:selected.ordre_jour,ordre_lecture_paquet:selected.ordre_lecture_paquet,tournée_debut:selected.tournée_debut,tournée_fin:selected.tournée_fin}).then(res => {     
+        await axios.post(`${BaseURL}/plan`,{code_rlp:selected.code_RLP,ordre_jour:selected.ordre_jour,ordre_lecture_paquet:selected.ordre_lecture_paquet,tournée_debut:selected.tournée_debut,tournée_fin:selected.tournée_fin}).then(res => {     
             if(res.data.error) {
                 setError(res.data.error);
             } else {

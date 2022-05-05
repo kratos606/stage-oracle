@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
+import BaseURL from '../components/url.config'
 
 const UserContext = createContext();
 
@@ -9,7 +10,7 @@ function UserContextProvider(props) {
   async function getUser() {
     try{
       const res = await axios.get(
-        "http://localhost:5000/auth/check"
+        `${BaseURL}/auth/check`
       );
       setUser(res.data.currentUser);
       setIsLoading(false);

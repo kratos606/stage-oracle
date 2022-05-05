@@ -5,12 +5,13 @@ import HistoryIcon from '@mui/icons-material/History';
 import MapIcon from '@mui/icons-material/Map';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import BaseURL from '../url.config'
 
 const drawerWidth = 200;
 
 function SidebarAdmin() {
   const logout = async() => {
-    await axios.get('http://localhost:5000/auth/logout').then(res => {
+    await axios.get(`${BaseURL}/auth/logout`).then(res => {
       window.location = '/login';
     }).catch(err => console.log(err))
   }

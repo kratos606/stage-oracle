@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Alert,Button,Dialog,DialogTitle,DialogActions,DialogContent,TextField,FormLabel,RadioGroup,Radio,FormControlLabel,FormControl } from '@mui/material'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import BaseURL from '../url.config'
 
 function UpdateUser(props) {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ function UpdateUser(props) {
     };
     const handleUpdate = async() => {
       selected.isAdmin === 'true' ? selected.isAdmin=true : selected.isAdmin=false
-      await axios.put(`http://localhost:5000/user/${selected.id}`,{username:selected.username,email:selected.email,password:selected.password,isAdmin:selected.isAdmin}).then(res => {
+      await axios.put(`${BaseURL}/user/${selected.id}`,{username:selected.username,email:selected.email,password:selected.password,isAdmin:selected.isAdmin}).then(res => {
         if(res.data.error) {
           setError(res.data.error)
         }

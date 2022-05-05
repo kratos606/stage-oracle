@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Alert,Dialog,DialogTitle,DialogActions,DialogContent,TextField,FormLabel,RadioGroup,Radio,FormControlLabel,FormControl,Button,Snackbar} from '@mui/material'
 import {useNavigate} from 'react-router-dom'
 import { Check,Close } from '@mui/icons-material';
+import BaseURL from '../url.config'
 
 function Create(props) {
   const [error,setError] = useState(null);
@@ -17,7 +18,7 @@ function Create(props) {
       setOpen(true);
   }
   const handleSubmit = async() => {
-    await axios.post('http://localhost:5000/user',{username:selected.username,email:selected.email,password:selected.password,isAdmin:selected.isAdmin==='true' ? true : false}).then(res => {
+    await axios.post(`${BaseURL}/user`,{username:selected.username,email:selected.email,password:selected.password,isAdmin:selected.isAdmin==='true' ? true : false}).then(res => {
         if(res.data.error) {
             setError(res.data.error)
         }

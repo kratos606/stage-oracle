@@ -5,6 +5,7 @@ import PersonIcon from '@mui/icons-material/Person'
 import { Loading } from '../components'
 import { Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import BaseURL from '../components/url.config'
 
 function Login() {
     const [inputs,setInputs] = useState({});
@@ -14,7 +15,7 @@ function Login() {
     const login = async(e) => {
         e.preventDefault();
         try{
-            let res = await axios.post('http://localhost:5000/auth/login', 
+            let res = await axios.post(`${BaseURL}/auth/login`, 
             {
                 email: inputs.email, 
                 password: inputs.password

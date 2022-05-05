@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import {Button,Dialog,DialogTitle,DialogActions} from '@mui/material'
 import { useNavigate } from 'react-router-dom';
+import BaseURL from '../url.config'
 
 function Delete(props) {
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ function Delete(props) {
         props.setOpen(false);
     };
     const handleDelete = async(id) => {
-        await axios.delete(`http://localhost:5000/user/${id}`).then(res => {
+        await axios.delete(`${BaseURL}/user/${id}`).then(res => {
           window.localStorage.setItem('success',res.data.success);
           props.setOpen(false);
           navigate(0);
